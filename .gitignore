@@ -1,0 +1,20 @@
+### Java template
+*.class
+
+# Package Files #
+*.jar
+*.war
+*.ear
+*.iml
+.idea/
+data/
+*/target/*
+/target/*
+*.db
+hs_err_pid*
+
+.DS_Store
+/target/
+.project
+.classpath
+.settings/
