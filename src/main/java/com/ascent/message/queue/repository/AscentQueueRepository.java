@@ -5,7 +5,10 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface AscentQueueRepository extends JpaRepository<AscentQueue, Long> {
+public interface AscentQueueRepository extends JpaRepository<AscentQueue, String> {
+
+    @Override
+    AscentQueue save (AscentQueue ascentQueue);
 
     AscentQueue findByName(String queueName);
 }

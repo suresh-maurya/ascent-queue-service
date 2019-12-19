@@ -1,6 +1,5 @@
 package com.ascent.message.queue;
 
-import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -8,8 +7,8 @@ import org.hibernate.annotations.Cascade;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
-import java.util.Deque;
 import java.util.LinkedList;
+import java.util.Queue;
 import java.util.UUID;
 
 @Getter
@@ -32,7 +31,7 @@ public class AscentQueue {
     @Cascade(org.hibernate.annotations.CascadeType.ALL)
     @JoinTable(name="ascent_queue_message_mapping", joinColumns = @JoinColumn(name = "queue_id"),
             inverseJoinColumns = @JoinColumn(name = "message_id"))
-    private Deque<Message> messages;
+    private Queue<Message> messages = new LinkedList<>();
 
     private LocalDateTime created;
 
@@ -40,6 +39,5 @@ public class AscentQueue {
         this.queueName = queueName;
         this.capacity = capacity;
         this.created = LocalDateTime.now();
-        this.messages = new LinkedList<>();
     }
 }
