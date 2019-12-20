@@ -22,10 +22,10 @@ spring:
     driver-class-name: org.h2.Driver
   jpa:
     database-platform: org.hibernate.dialect.H2Dialect
-    generate-ddl: false
-    show-sql: false
+    generate-ddl: true
+    show-sql: true
     hibernate:
-      ddl-auto: validate
+      ddl-auto: create
       naming:
         implicit-strategy: org.hibernate.boot.model.naming.ImplicitNamingStrategyJpaCompliantImpl
   h2:

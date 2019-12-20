@@ -21,13 +21,12 @@ import java.util.UUID;
 @Entity
 @NoArgsConstructor
 @AllArgsConstructor
-public class Message implements Serializable {
+public class Message {
 
     @Id
     @Column(length = 64)
     private String id = UUID.randomUUID().toString();
 
-    @Setter
     private LocalDateTime created;
 
     @Setter

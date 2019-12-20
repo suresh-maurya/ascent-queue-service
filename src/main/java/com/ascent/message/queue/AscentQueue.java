@@ -8,7 +8,7 @@ import org.hibernate.annotations.Cascade;
 import javax.persistence.*;
 import java.time.LocalDateTime;
 import java.util.LinkedList;
-import java.util.Queue;
+import java.util.List;
 import java.util.UUID;
 
 @Getter
@@ -27,11 +27,12 @@ public class AscentQueue {
     private Integer capacity;
 
     @Setter
+    @OrderBy(value = "created ASC")
     @OneToMany(fetch = FetchType.EAGER, orphanRemoval = true)
     @Cascade(org.hibernate.annotations.CascadeType.ALL)
     @JoinTable(name="ascent_queue_message_mapping", joinColumns = @JoinColumn(name = "queue_id"),
             inverseJoinColumns = @JoinColumn(name = "message_id"))
-    private Queue<Message> messages = new LinkedList<>();
+    private List<Message> messages = new LinkedList<>();
 
     private LocalDateTime created;
 

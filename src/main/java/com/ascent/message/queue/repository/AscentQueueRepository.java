@@ -10,5 +10,5 @@ public interface AscentQueueRepository extends JpaRepository<AscentQueue, String
     @Override
     AscentQueue save (AscentQueue ascentQueue);
 
-    AscentQueue findByName(String queueName);
+    AscentQueue findByQueueName(String queueName);
 }

@@ -50,7 +50,7 @@ public class AscentQueueServiceImpl implements AscentQueueService {
         if(QueueUtil.checkNullAndEmpty(queueName))
             throw new QueueException(ErrorCode.QUEUE_NAME_EMPTY, ErrorMessage.QUEUE_NAME_EMPTY);
 
-        return ascentQueueRepository.findByName(queueName);
+        return ascentQueueRepository.findByQueueName(queueName);
     }
 
     @Override
@@ -71,7 +71,8 @@ public class AscentQueueServiceImpl implements AscentQueueService {
     public Message deQueue(String queueName) throws QueueException {
 
         AscentQueue ascentQueue = getQueue(queueName);
-        Message message = ascentQueue.getMessages().poll();
+        //Message message = ascentQueue.getMessages().poll();
+        Message message = ascentQueue.getMessages().stream().findFirst().get();
         ascentQueueRepository.save(ascentQueue);
         return message;
     }
@@ -89,7 +90,8 @@ public class AscentQueueServiceImpl implements AscentQueueService {
     public Message peek(String queueName) throws QueueException {
 
         AscentQueue ascentQueue = getQueue(queueName);
-        Message message = ascentQueue.getMessages().peek();
+        //Message message = ascentQueue.getMessages().peek();
+        Message message = ascentQueue.getMessages().stream().findFirst().get();
         ascentQueueRepository.save(ascentQueue);
         return message;
     }
