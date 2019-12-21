@@ -6,6 +6,7 @@ import com.ascent.message.queue.AscentQueue;
 import com.ascent.message.queue.Message;
 import com.ascent.message.queue.repository.AscentQueueRepository;
 import com.ascent.message.queue.service.AscentQueueService;
+import org.junit.After;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
@@ -27,8 +28,8 @@ public class AscentQueueServiceTest {
     @Autowired
     AscentQueueService ascentQueueService;
 
-    @Before
-    public void cleanup(){
+    @After
+    public void tearDown() {
         ascentQueueRepository.deleteAll();
     }
 

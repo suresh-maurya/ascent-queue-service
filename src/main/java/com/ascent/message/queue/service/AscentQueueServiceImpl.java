@@ -19,9 +19,12 @@ public class AscentQueueServiceImpl implements AscentQueueService {
     @Override
     public AscentQueue createQueue(String queueName, Integer size) throws QueueException {
 
-        if(QueueUtil.checkNullAndEmpty(queueName))
+        if(QueueUtil.checkNullAndEmpty(queueName)) {
             throw new QueueException(ErrorCode.QUEUE_NAME_EMPTY, ErrorMessage.QUEUE_NAME_EMPTY);
-
+        }
+        if (ascentQueueRepository.findByQueueName(queueName) != null) {
+            throw new QueueException(ErrorCode.QUEUE_ALREADY_EXISTS, ErrorMessage.QUEUE_ALREADY_EXISTS);
+        }
         AscentQueue ascentQueue = new AscentQueue(queueName, size);
         ascentQueue = ascentQueueRepository.save(ascentQueue);
         return ascentQueue;
