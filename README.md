@@ -1,9 +1,9 @@
 # ascent-queue-service
 Queue service project for Ascent HR
 
-#Deployment
+# Deployment
 
-###If using postgreSql please uncomment below lines from application.yml
+### If using postgreSql please uncomment below lines from application.yml
 
 url: jdbc:postgresql://localhost:5432/postgres
 
