@@ -6,32 +6,26 @@ import com.ascent.message.queue.AscentQueue;
 import com.ascent.message.queue.Message;
 import com.ascent.message.queue.repository.AscentQueueRepository;
 import com.ascent.message.queue.service.AscentQueueService;
-import com.ascent.message.queue.service.AscentQueueServiceImpl;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
-import org.mockito.InjectMocks;
-import org.mockito.Mock;
-import org.mockito.MockitoAnnotations;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.junit4.SpringRunner;
 
 
 @RunWith(SpringRunner.class)
 @ActiveProfiles("test")
+@SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 public class AscentQueueServiceTest {
 
-    @Mock
+    @Autowired
     AscentQueueRepository ascentQueueRepository;
 
-    @InjectMocks
-    AscentQueueService ascentQueueService = new AscentQueueServiceImpl();
-
-    @Before
-    public void init() {
-        MockitoAnnotations.initMocks(this);
-    }
+    @Autowired
+    AscentQueueService ascentQueueService;
 
     @Before
     public void cleanup(){
@@ -86,7 +80,6 @@ public class AscentQueueServiceTest {
         AscentQueue ascentQueue = defaultQueue();
         Message message = ascentQueueService.deQueue(ascentQueue.getQueueName());
         Assert.assertTrue(message.getContent().equals("Default message"));
-
     }
 
     @Test

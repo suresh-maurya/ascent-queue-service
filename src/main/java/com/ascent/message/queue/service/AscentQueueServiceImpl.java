@@ -71,8 +71,8 @@ public class AscentQueueServiceImpl implements AscentQueueService {
     public Message deQueue(String queueName) throws QueueException {
 
         AscentQueue ascentQueue = getQueue(queueName);
-        //Message message = ascentQueue.getMessages().poll();
         Message message = ascentQueue.getMessages().stream().findFirst().get();
+        ascentQueue.getMessages().remove(message);
         ascentQueueRepository.save(ascentQueue);
         return message;
     }
@@ -90,7 +90,6 @@ public class AscentQueueServiceImpl implements AscentQueueService {
     public Message peek(String queueName) throws QueueException {
 
         AscentQueue ascentQueue = getQueue(queueName);
-        //Message message = ascentQueue.getMessages().peek();
         Message message = ascentQueue.getMessages().stream().findFirst().get();
         ascentQueueRepository.save(ascentQueue);
         return message;

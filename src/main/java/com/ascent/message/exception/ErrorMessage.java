@@ -8,7 +8,7 @@ public class ErrorMessage {
     public static final String QUEUE_PURGED = "Queue purged successfully.";
     public static final String NOT_PURGED = "Could not purge the queue";
     public static final String QUEUE_NOT_DELETED = "Could not delete the queue";
-    public static final String QUEUE_DELETED = "Could not delete the queue";
+    public static final String QUEUE_DELETED = "Queue is deleted";
     public static final String QUEUE_ALREADY_EXISTS = "Queue already exists";
 
 }
